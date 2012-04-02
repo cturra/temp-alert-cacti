@@ -1,0 +1,6 @@
+Takes in one server argument then makes an HTTP request to the
+target temperature@lert device to retrieve the XML status file.
+Returns a result set of the current termperature in both F and C.
+
+  Example output:
+    fahrenheit:84.0 celcius:28.9
