@@ -60,8 +60,7 @@ def main():
 
         # check response code
         if req.status == 200:
-                data = req.read()
-                doc = libxml2.parseDoc(data)
+                doc = libxml2.parseDoc(req.read())
                 root = doc.children
                 for child in root:
 			# check what units are configured for reporting
