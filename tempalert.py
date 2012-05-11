@@ -4,6 +4,17 @@ import sys, re
 import httplib, libxml2
 
 
+# complete the http connect and return connection object if successful
+def http_connect(server):
+	conn = httplib.HTTPConnection(server, timeout=10)
+        try:
+                conn.request("GET", "/xmlfeed.rb")
+                return conn
+        except:
+                print "Unable to complete HTTP request"
+                sys.exit(1)
+
+
 # calculate celcius from fahrenheit. if celcius is provided, just round.
 def calc_celcius(temp,unit):
 	if (unit.lower() == "f"):
@@ -33,15 +44,8 @@ def print_temp_results(temp,unit):
 
 # the business end. main logic in here \o/
 def main():
-        server = sys.argv[1]
-
-        conn = httplib.HTTPConnection(server, timeout=10)
-        try:
-                conn.request("GET", "/xmlfeed.rb")
-                req = conn.getresponse()
-        except:
-                print "Unable to complete HTTP request"
-                sys.exit(1)
+        conn = http_connect(sys.argv[1])
+	req = conn.getresponse()
 
         # check response code
         if req.status == 200:
