@@ -9,7 +9,7 @@
 			<t_height></t_height>
 			<height>120</height>
 			<t_width></t_width>
-			<width>500</width>
+			<width>600</width>
 			<t_slope_mode></t_slope_mode>
 			<slope_mode>on</slope_mode>
 			<t_auto_scale></t_auto_scale>
@@ -49,7 +49,7 @@
 				<cdef_id>0</cdef_id>
 				<value></value>
 				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
-				<text_format>Celsius:</text_format>
+				<text_format>Celcius:</text_format>
 				<hard_return></hard_return>
 				<sequence>1</sequence>
 			</hash_100021b2d1e8caf7430469a106e16c33d7d276>
@@ -216,7 +216,7 @@
 			</hash_08002147804b38288ae468b0f055444d1afea1>
 			<hash_08002160c143a06eafd59cd8e4aed38086953a>
 				<t_data_source_name></t_data_source_name>
-				<data_source_name>celsius</data_source_name>
+				<data_source_name>celcius</data_source_name>
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
@@ -243,13 +243,13 @@
 		<input_string>/usr/bin/python &lt;path_cacti&gt;/scripts/tempalert.py &lt;server&gt;</input_string>
 		<fields>
 			<hash_070021bb7716877d653c701824bbc7abd45e2d>
-				<name>Celsius</name>
+				<name>Celcius</name>
 				<update_rra>on</update_rra>
 				<regexp_match></regexp_match>
 				<allow_nulls></allow_nulls>
 				<type_code></type_code>
 				<input_output>out</input_output>
-				<data_name>celsius</data_name>
+				<data_name>celcius</data_name>
 			</hash_070021bb7716877d653c701824bbc7abd45e2d>
 			<hash_070021170372b0660369c4bf144e56cebd0431>
 				<name>IP of the temperature@lert device:</name>
