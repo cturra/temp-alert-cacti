@@ -8,8 +8,9 @@ Example run:
     fahrenheit:84.0 celcius:28.9
 
 
-## Debian/Ubunutu installation notes
+Debian/Ubuntu installation notes
+-----------
 
 libxml2 is required for parsing the xml feed on the temperature@lert.
 
- apt-get install python-libxml2
+    $ apt-get install python-libxml2
