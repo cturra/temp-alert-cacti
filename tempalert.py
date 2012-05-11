@@ -3,7 +3,6 @@
 import sys, re
 import httplib, libxml2
 
-
 # complete the http connect and return connection object if successful
 def http_connect(server):
 	conn = httplib.HTTPConnection(server, timeout=10)
@@ -16,7 +15,7 @@ def http_connect(server):
 
 
 # calculate celcius from fahrenheit. if celcius is provided, just round.
-def calc_celcius(temp,unit):
+def calc_celcius(temp):
 	if (unit.lower() == "f"):
 		# calculate celcius (5/9) * (F-32) and round to 1 decimal place
 		return round(((5.0/9) * (eval(temp) - 32)), 1)
@@ -25,7 +24,9 @@ def calc_celcius(temp,unit):
 		return round(eval(temp),1)
 
 # calculate fahrenheit from celcius. if fahrenheit is provided, just round.
-def calc_fahrenheit(temp,unit):
+def calc_fahrenheit(temp):
+	global unit
+
 	if (unit.lower() == "c"):
 		# calculate fahrenheit (C) * (9/5) + 32 and round to 1 decimal place
 		return round((eval(temp) * (9/5.0) + 32),1)
@@ -34,12 +35,22 @@ def calc_fahrenheit(temp,unit):
 		return round(eval(temp),1)
 
 
-# print to temperature results to standard out
-def print_temp_results(temp,unit):
-	c = calc_celcius(temp,unit)
-	f = calc_fahrenheit(temp,unit)	
+# print temperature results to standard out
+def print_results(type,content):
+	if type == "temperature":
+		c = calc_celcius(content)
+		f = calc_fahrenheit(content)
+		print "fahrenheit:"+str(f)+" celcius:"+str(c)
+	else:
+		print "humidity:"+str(content)
 
-	print "fahrenheit:"+str(f)+" celcius:"+str(c)
+
+# pull the currentReading out of the XML child provided
+def find_current_reading_details(type,doc):
+	for children in doc:
+		if children.name == "currentReading":
+			print_results(type,children.content)
+			break
 
 
 # the business end. main logic in here \o/
@@ -55,6 +66,7 @@ def main():
                 for child in root:
 			# check what units are configured for reporting
 			if child.name == "tempUnits":
+				global unit
 				if str(child.content).lower() == "fahrenheit":
 					unit = "f"
 				else:
@@ -62,10 +74,11 @@ def main():
 
 			# found temperature elements!
 			if child.type == "element" and re.search("temperature",str(child.properties)):
-				for children in child:
-		                        if children.name == "currentReading":
-						print_temp_results(children.content,unit)
-						break
+				find_current_reading_details("temperature",child)
+
+			# found humidity elements!
+			if child.type == "element" and re.search("humidity",str(child.properties)):
+				find_current_reading_details("humidity",child)
 
                 # close XML document
                 doc.freeDoc()
