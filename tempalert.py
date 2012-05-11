@@ -1,7 +1,37 @@
 #!/usr/bin/python
 
-import httplib, libxml2, sys
+import sys, re
+import httplib, libxml2
 
+
+# calculate celcius from fahrenheit. if celcius is provided, just round.
+def calc_celcius(temp,unit):
+	if (unit.lower() == "f"):
+		# calculate celcius (5/9) * (F-32) and round to 1 decimal place
+		return round(((5.0/9) * (eval(temp) - 32)), 1)
+	else:
+		# round celcius to 1 decminal place
+		return round(eval(temp),1)
+
+# calculate fahrenheit from celcius. if fahrenheit is provided, just round.
+def calc_fahrenheit(temp,unit):
+	if (unit.lower() == "c"):
+		# calculate fahrenheit (C) * (9/5) + 32 and round to 1 decimal place
+		return round((eval(temp) * (9/5.0) + 32),1)
+	else:
+		# round fahrenheit to 1 decimal place
+		return round(eval(temp),1)
+
+
+# print to temperature results to standard out
+def print_temp_results(temp,unit):
+	c = calc_celcius(temp,unit)
+	f = calc_fahrenheit(temp,unit)	
+
+	print "fahrenheit:"+str(f)+" celcius:"+str(c)
+
+
+# the business end. main logic in here \o/
 def main():
         server = sys.argv[1]
 
@@ -19,13 +49,20 @@ def main():
                 doc = libxml2.parseDoc(data)
                 root = doc.children
                 for child in root:
-                        if child.name == "currentReading":
-                                # calculate celcius (5/9) * (F-32) and round to 1 decimal place
-                                c = round(((5.0/9) * (eval(child.content) - 32)), 1)
-                                # round fahrenheit to 1 decimal place
-                                f = round(eval(child.content), 1)
-                                # output results to stdout
-                                print "fahrenheit:"+str(f)+" celcius:"+str(c)
+			# check what units are configured for reporting
+			if child.name == "tempUnits":
+				if str(child.content).lower() == "fahrenheit":
+					unit = "f"
+				else:
+					unit = "c"
+
+			# found temperature elements!
+			if child.type == "element" and re.search("temperature",str(child.properties)):
+				for children in child:
+		                        if children.name == "currentReading":
+						print_temp_results(children.content,unit)
+						break
+
                 # close XML document
                 doc.freeDoc()
 
@@ -36,6 +73,7 @@ def main():
 
         # close connection
         conn.close()
+
 
 
 if __name__ == "__main__":
