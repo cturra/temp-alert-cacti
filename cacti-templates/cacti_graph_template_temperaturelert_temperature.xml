@@ -1,9 +1,9 @@
 <cacti>	
 	<hash_0000210f23470c1b37d0cd7be48193d3e3fd48>
-		<name>Temperature @lert</name>
+		<name>temperature@lert - Temperature</name>
 		<graph>
 			<t_title></t_title>
-			<title>|host_description| - Temperature @lert</title>
+			<title>|host_description| - temperature</title>
 			<t_image_format_id></t_image_format_id>
 			<image_format_id>1</image_format_id>
 			<t_height></t_height>
@@ -187,10 +187,10 @@
 		</inputs>
 	</hash_0000210f23470c1b37d0cd7be48193d3e3fd48>
 	<hash_010021b847cb14148cbb08e4b507c7746f90bd>
-		<name>Temperature@lert</name>
+		<name>temperature@lert - Temperature</name>
 		<ds>
 			<t_name></t_name>
-			<name>|host_description| - Temperature@lert</name>
+			<name>|host_description| - temperature</name>
 			<data_input_id>hash_030021f1fa6f14350e08c5ff5c2a1c9c355b0b</data_input_id>
 			<t_rra_id></t_rra_id>
 			<t_rrd_step></t_rrd_step>
@@ -231,16 +231,21 @@
 		</items>
 		<data>
 			<item_000>
-				<data_input_field_id>hash_070021170372b0660369c4bf144e56cebd0431</data_input_field_id>
+				<data_input_field_id>hash_07002197a5437cef0849f5af4eae34d3b34fef</data_input_field_id>
 				<t_value>on</t_value>
 				<value></value>
 			</item_000>
+			<item_001>
+				<data_input_field_id>hash_070021170372b0660369c4bf144e56cebd0431</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_001>
 		</data>
 	</hash_010021b847cb14148cbb08e4b507c7746f90bd>
 	<hash_030021f1fa6f14350e08c5ff5c2a1c9c355b0b>
-		<name>Temperature@lert</name>
+		<name>temperature@lert - temperature</name>
 		<type_id>1</type_id>
-		<input_string>/usr/bin/python &lt;path_cacti&gt;/scripts/tempalert.py &lt;server&gt;</input_string>
+		<input_string>/usr/bin/python &lt;path_cacti&gt;/scripts/tempalert.py &lt;server&gt; &lt;content&gt;</input_string>
 		<fields>
 			<hash_070021bb7716877d653c701824bbc7abd45e2d>
 				<name>Celcius</name>
@@ -269,6 +274,15 @@
 				<input_output>out</input_output>
 				<data_name>fahrenheit</data_name>
 			</hash_070021997b849702a2fd6d93c4f3109ec41429>
+			<hash_07002197a5437cef0849f5af4eae34d3b34fef>
+				<name>Content type (temperature or humidity)</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>in</input_output>
+				<data_name>content</data_name>
+			</hash_07002197a5437cef0849f5af4eae34d3b34fef>
 		</fields>
 	</hash_030021f1fa6f14350e08c5ff5c2a1c9c355b0b>
 	<hash_150021c21df5178e5c955013591239eb0afd46>
