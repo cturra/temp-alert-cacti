@@ -53,8 +53,20 @@ def find_current_reading_details(type,doc):
 			break
 
 
+# validate that the content type is either temperature or humidity
+def validate_content_type(type):
+	if type.lower() == "temperature" or type.lower() == "temp":
+		return "temperature"
+	elif type.lower() == "humidity":
+		return "humidity"
+	else:
+		print "Invalid content_type. Only temperature and humidity supported at this time."
+		sys.exit(1)
+
+
 # the business end. main logic in here \o/
 def main():
+	content_type = validate_content_type(sys.argv[2])
         conn = http_connect(sys.argv[1])
 	req = conn.getresponse()
 
@@ -64,19 +76,16 @@ def main():
                 root = doc.children
                 for child in root:
 			# check what units are configured for reporting
-			if child.name == "tempUnits":
+			if content_type == "temperature" and child.name == "tempUnits":
 				global unit
-				if str(child.content).lower() == "fahrenheit":
-					unit = "f"
-				else:
-					unit = "c"
+				unit = "f" if str(child.content).lower() == "fahrenheit" else "c"
 
 			# found temperature elements!
-			if child.type == "element" and re.search("temperature",str(child.properties)):
+			if content_type == "temperature" and (child.type == "element" and re.search("temperature",str(child.properties))):
 				find_current_reading_details("temperature",child)
 
 			# found humidity elements!
-			if child.type == "element" and re.search("humidity",str(child.properties)):
+			if content_type == "humidity" and (child.type == "element" and re.search("humidity",str(child.properties))):
 				find_current_reading_details("humidity",child)
 
                 # close XML document
@@ -93,8 +102,9 @@ def main():
 
 
 if __name__ == "__main__":
-        if len(sys.argv) < 2:
-                print "Usage: tempalert.py <server>"
+        if len(sys.argv) < 3:
+                print "Usage: tempalert.py <server> <condition_type>"
+		print "  - condition type: temperature OR humidity"
                 sys.exit(1)
         else:
                 main()
