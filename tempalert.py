@@ -3,15 +3,24 @@
 import sys, re
 import httplib, libxml2
 
+## some parameters to tune if you want
+HTTP_TIMEOUT = 10 #in seconds
+HTTP_CONNECTION_ATTEMPTS = 3 #number of attempts to connect
+
+
 # complete the http connect and return connection object if successful
 def http_connect(server):
-	conn = httplib.HTTPConnection(server, timeout=10)
-        try:
-                conn.request("GET", "/xmlfeed.rb")
-                return conn
-        except:
-                print "Unable to complete HTTP request"
-                sys.exit(1)
+	conn_try = 0
+	while True:
+		conn = httplib.HTTPConnection(server, timeout=HTTP_TIMEOUT)
+		conn_try+=1
+        	try:
+	                conn.request("GET", "/xmlfeed.rb")
+	                return conn
+	        except:
+			if conn_try >= HTTP_CONNECTION_ATTEMPTS:
+		                print 'Unable to complete HTTP request after %s attempts' % HTTP_CONNECTION_ATTEMPTS
+		                sys.exit(1)
 
 
 # calculate celcius from fahrenheit. if celcius is provided, just round.
