@@ -15,7 +15,7 @@
 			<t_auto_scale></t_auto_scale>
 			<auto_scale>on</auto_scale>
 			<t_auto_scale_opts></t_auto_scale_opts>
-			<auto_scale_opts>2</auto_scale_opts>
+			<auto_scale_opts>3</auto_scale_opts>
 			<t_auto_scale_log></t_auto_scale_log>
 			<auto_scale_log></auto_scale_log>
 			<t_scale_log_units></t_scale_log_units>
@@ -26,10 +26,10 @@
 			<auto_padding>on</auto_padding>
 			<t_export></t_export>
 			<export>on</export>
-			<t_upper_limit></t_upper_limit>
-			<upper_limit>100</upper_limit>
-			<t_lower_limit></t_lower_limit>
-			<lower_limit>0</lower_limit>
+			<t_upper_limit>on</t_upper_limit>
+			<upper_limit></upper_limit>
+			<t_lower_limit>on</t_lower_limit>
+			<lower_limit></lower_limit>
 			<t_base_value></t_base_value>
 			<base_value>1000</base_value>
 			<t_unit_value></t_unit_value>
@@ -43,7 +43,7 @@
 			<hash_100021b2d1e8caf7430469a106e16c33d7d276>
 				<task_item_id>hash_08002160c143a06eafd59cd8e4aed38086953a</task_item_id>
 				<color_id>EE5019</color_id>
-				<alpha>FF</alpha>
+				<alpha>B2</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
 				<cdef_id>0</cdef_id>
@@ -61,7 +61,7 @@
 				<consolidation_function_id>4</consolidation_function_id>
 				<cdef_id>0</cdef_id>
 				<value></value>
-				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<gprint_id>hash_0600217870377417c26733252ad2099efa206c</gprint_id>
 				<text_format>Current:</text_format>
 				<hard_return></hard_return>
 				<sequence>2</sequence>
@@ -74,7 +74,7 @@
 				<consolidation_function_id>2</consolidation_function_id>
 				<cdef_id>0</cdef_id>
 				<value></value>
-				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<gprint_id>hash_0600217870377417c26733252ad2099efa206c</gprint_id>
 				<text_format>Minimum:</text_format>
 				<hard_return></hard_return>
 				<sequence>3</sequence>
@@ -87,7 +87,7 @@
 				<consolidation_function_id>3</consolidation_function_id>
 				<cdef_id>0</cdef_id>
 				<value></value>
-				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<gprint_id>hash_0600217870377417c26733252ad2099efa206c</gprint_id>
 				<text_format>Maximum:</text_format>
 				<hard_return></hard_return>
 				<sequence>4</sequence>
@@ -100,7 +100,7 @@
 				<consolidation_function_id>1</consolidation_function_id>
 				<cdef_id>0</cdef_id>
 				<value></value>
-				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<gprint_id>hash_0600217870377417c26733252ad2099efa206c</gprint_id>
 				<text_format>Average:</text_format>
 				<hard_return>on</hard_return>
 				<sequence>5</sequence>
@@ -108,7 +108,7 @@
 			<hash_100021cc497b782d6067d916f95cd638c3aa75>
 				<task_item_id>hash_08002147804b38288ae468b0f055444d1afea1</task_item_id>
 				<color_id>EA8F00</color_id>
-				<alpha>FF</alpha>
+				<alpha>B2</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
 				<cdef_id>0</cdef_id>
@@ -217,7 +217,7 @@
 			<hash_08002160c143a06eafd59cd8e4aed38086953a>
 				<t_data_source_name></t_data_source_name>
 				<data_source_name>celcius</data_source_name>
-				<t_rrd_minimum></t_rrd_minimum>
+				<t_rrd_minimum>on</t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
 				<rrd_maximum>100</rrd_maximum>
@@ -329,4 +329,8 @@
 		<name>Normal</name>
 		<gprint_text>%8.2lf %s</gprint_text>
 	</hash_060021e9c43831e54eca8069317a2ce8c6f751>
+	<hash_0600217870377417c26733252ad2099efa206c>
+		<name>Exact decimal</name>
+		<gprint_text>%8.2lf</gprint_text>
+	</hash_0600217870377417c26733252ad2099efa206c>
 </cacti>
